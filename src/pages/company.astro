@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="会社情報">
+  <Fragment slot="header"><Header /></Fragment>
+  <h1>会社情報</h1>
+  <div class="card">
+    <h3>企業概要</h3>
+    <p>社名: 株式会社サンプル</p>
+    <p>所在地: 東京都千代田区1-2-3</p>
+    <p>設立: 2024年</p>
+    <p>事業内容: Web開発・コンサルティング</p>
+  </div>
+  <div class="card">
+    <h3>ミッション</h3>
+    <p>テクノロジーで、だれもが価値を届けられる世界を。</p>
+  </div>
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

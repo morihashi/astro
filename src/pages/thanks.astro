@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="送信完了">
+  <Fragment slot="header"><Header /></Fragment>
+  <h1>お問い合わせを受け付けました</h1>
+  <p>担当者よりご連絡いたします。ありがとうございました。</p>
+  <p><a href="/">トップへ戻る</a></p>
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

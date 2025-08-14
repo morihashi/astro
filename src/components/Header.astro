@@ -1,0 +1,16 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (href) => (pathname === href ? 'page' : undefined);
+---
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" style="font-weight:800; letter-spacing:.2px;">株式会社サンプル</a>
+    <nav>
+      <a href="/" aria-current={isActive('/')} >トップ</a>
+      <a href="/services" aria-current={isActive('/services')} >サービス</a>
+      <a href="/company" aria-current={isActive('/company')} >会社情報</a>
+      <a href="/news" aria-current={isActive('/news')} >ニュース</a>
+      <a href="/contact" aria-current={isActive('/contact')} >お問い合わせ</a>
+    </nav>
+  </div>
+</header>

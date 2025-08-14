@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="サービス">
+  <Fragment slot="header"><Header /></Fragment>
+  <h1>サービス</h1>
+  <div class="grid">
+    <div class="card">
+      <h3>コンサルティング</h3>
+      <p>戦略立案から実行まで、デジタル変革を伴走支援。</p>
+    </div>
+    <div class="card">
+      <h3>デザイン/開発</h3>
+      <p>ユーザー中心設計に基づくUI/UXと堅牢な実装。</p>
+    </div>
+    <div class="card">
+      <h3>運用/グロース</h3>
+      <p>継続的な改善と計測で成果を最大化。</p>
+    </div>
+  </div>
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
