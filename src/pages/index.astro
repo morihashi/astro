@@ -2,38 +2,73 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+const latestPosts = (await getCollection('news', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 <BaseLayout title="トップ">
   <Fragment slot="header"><Header /></Fragment>
   <section class="hero">
     <div class="container">
-      <h1>ビジネスを前に進める、Webソリューション。</h1>
-      <p>Astro 製のコーポレートサイト雛形です。高速・安全・拡張可能。</p>
+      <h1>計測・制御・情報で、産業と社会を支える。</h1>
+      <p>現場の信頼とデータの力で、お客様の課題解決をリードします。</p>
     </div>
   </section>
+
+  <section>
+    <div class="container">
+      <h2>事業領域</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>計測ソリューション</h3>
+          <p>多様なセンサーと計測機器で、精度と安定性を両立したデータ取得を実現。</p>
+          <p><a href="/services">関連サービス →</a></p>
+        </div>
+        <div class="card">
+          <h3>制御システム</h3>
+          <p>装置・ラインの自動化から最適化まで、安全性と生産性を高水準で両立。</p>
+          <p><a href="/services">関連サービス →</a></p>
+        </div>
+        <div class="card">
+          <h3>情報・可視化</h3>
+          <p>収集したデータを活用し、ダッシュボードや分析基盤で価値を創出。</p>
+          <p><a href="/services">関連サービス →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>最新ニュース</h2>
+      <ul class="article-list">
+        {latestPosts.map((post) => (
+          <li>
+            <a href={`/news/${post.slug}/`}>{post.data.title}</a>
+            <div class="time">{post.data.date.toLocaleDateString('ja-JP')}</div>
+            {post.data.excerpt && <div>{post.data.excerpt}</div>}
+          </li>
+        ))}
+      </ul>
+      <p style="margin-top:12px"><a href="/news">ニュース一覧 →</a></p>
+    </div>
+  </section>
+
   <section>
     <div class="container grid">
       <div class="card">
-        <h3>サービス</h3>
-        <p>私たちの提供するプロダクトと支援内容をご紹介します。</p>
-        <p><a href="/services">詳しく見る →</a></p>
-      </div>
-      <div class="card">
         <h3>会社情報</h3>
-        <p>ミッション・ビジョン、企業概要、アクセスなど。</p>
+        <p>企業理念、概要、沿革、アクセスなどをご紹介します。</p>
         <p><a href="/company">詳しく見る →</a></p>
       </div>
       <div class="card">
-        <h3>ニュース</h3>
-        <p>プレスリリースやお知らせを掲載します。</p>
-        <p><a href="/news">一覧へ →</a></p>
-      </div>
-      <div class="card">
         <h3>お問い合わせ</h3>
-        <p>プロジェクトのご相談やお見積りはこちら。</p>
+        <p>製品・ソリューション、導入やお見積りのご相談はこちらから。</p>
         <p><a href="/contact">フォームへ →</a></p>
       </div>
     </div>
   </section>
+
   <Fragment slot="footer"><Footer /></Fragment>
 </BaseLayout>
